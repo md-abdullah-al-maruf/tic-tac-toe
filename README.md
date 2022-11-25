@@ -2,9 +2,9 @@
 
 Tic-tac-toe game in C language.
 
-OR
-
 You can run the tic-tac-toe.exe file in windows
+
+OR
 
 tic-tac-toe.c file in C compiler.
 
