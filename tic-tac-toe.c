@@ -1,17 +1,35 @@
+/*
+
+    Tic-Tac-Toe game code written in C language.
+    Coded by Md. Abdullah Al Maruf.
+    https://github.com/md-abdullah-al-maruf
+
+*/
+
 #include<stdio.h>
 #include<stdlib.h>
+
+//  globally initialization of all needed arrays and variables.
+
 char a[5][9],b[5][9],c[5][9],d[5][9],e[5][9],f[5][9],g[5][9],h[5][9],k[5][9],p1[9],p2[9],gm[50];
 int check[9],x=1,y=0,z=0,choi=1;
+
+/*
+
+    cross pattern function
+
+*/
+
 void * cross(char t[5][9])
 {
     int i,j;
     for(i=0; i<5; i++)
     {
-        for(j=0; j<9; j++)
-        {
-            if(i*2==j)
-            {
-                t[i][j]='*';
+        for(j=0; j<9; j++)          //  *       *
+        {                           //    *   *
+            if(i*2==j)              //      *
+            {                       //    *   *
+                t[i][j]='*';        //  *       *
             }
             if(i==0&&j==8||i==1&&j==6||i==2&&j==4||i==3&&j==2||i==4&&j==0)
             {
@@ -20,12 +38,19 @@ void * cross(char t[5][9])
         }
     }
 }
+
+/*
+
+    zero pattern function
+
+*/
+
 void * zero(char t[5][9])
-{
-    int i,j;
-    for(i=0; i<5; i++)
-    {
-        for(j=0; j<9; j++)
+{                                   //  * * * * *
+    int i,j;                        //  *       *
+    for(i=0; i<5; i++)              //  *       *
+    {                               //  *       *
+        for(j=0; j<9; j++)          //  * * * * *
         {
             if(((i==0||i==4)&&j%2==0)||(((i>0&&i<4)&&(j==0||j==8))))
             {
@@ -38,14 +63,21 @@ void * zero(char t[5][9])
         }
     }
 }
+
+/*
+
+   this function take moves and print output of corresponding player.
+
+*/
+
 void ch(int n)
 {
-    if(check[n-1]==0)
+    if(check[n-1]==0)   //  check the partition is empty or not.
     {
-        if(x==2)
+        if(x==2)        //  if x=2, this one is 2nd player.
         {
-            p2[n-1]=1;
-            switch(n)
+            p2[n-1]=1;  //  this p2 store all the moves of 2nd player.
+            switch(n)   //  store pattern as corresponding partition.
             {
             case 1:
                 zero(&a);
@@ -76,10 +108,10 @@ void ch(int n)
                 break;
             }
         }
-        else if(x==1)
+        else if(x==1)   //  if x=1, this one is 1st player.
         {
-            p1[n-1]=1;
-            switch(n)
+            p1[n-1]=1;  //  this p1 store all moves of 1st player.
+            switch(n)   //  store pattern as corresponding partition.
             {
             case 1:
                 cross(&a);
@@ -110,8 +142,8 @@ void ch(int n)
                 break;
             }
         }
-        check[n-1]=1;
-        if(x==1)
+        check[n-1]=1;   //  there are nine partition (3 x 3), store 1 as flag to confirm the N number partition is completed
+        if(x==1)        //  change player correspondingly.
         {
             x=2;
         }
@@ -121,16 +153,22 @@ void ch(int n)
         }
     }
     else
-    {
+    {                   //  if the partition is already given by previous player.
         fflush(stdin);
         printf("\t\t\tIts given already!!\n");
         sleep(1);
         print();
     }
 }
+
+/*
+
+    this is the main tic-tac-toe pattern.
+
+*/
+
 void print()
 {
-    char cx='#';
     system("cls");
     printf("\n\n");
     printf("\t _________________________________________\n");
@@ -157,13 +195,22 @@ void print()
     printf("\t|_____________|_____________|_____________|\n");
     printf("\n");
 }
+
+/*
+
+    this function check the game's rules condition.
+
+*/
+
 int game()
 {
     int i,j;
-    if(p1[0]==1&&p1[1]==1&&p1[2]==1)
+    if(p1[0]==1&&p1[1]==1&&p1[2]==1)             // 1st row
     {
-        for(i=0;i<=8;i++){
-            if(i<8){
+        for(i=0; i<=8; i++)
+        {
+            if(i<8)
+            {
                 gm[i]='#';
             }
             a[2][i]=b[2][i]=c[2][i]='#';
@@ -171,11 +218,14 @@ int game()
         gm[38]=gm[39]='#';
         return 1;
     }
-    else if(p1[0]==1&&p1[4]==1&&p1[8]==1)
+    else if(p1[0]==1&&p1[4]==1&&p1[8]==1)       //  primary diagonal
     {
-        for(i=0;i<5;i++){
-            for(j=0;j<9;j++){
-                if(i*2==j){
+        for(i=0; i<5; i++)
+        {
+            for(j=0; j<9; j++)
+            {
+                if(i*2==j)
+                {
                     a[i][j]=e[i][j]=k[i][j]='#';
                 }
             }
@@ -183,46 +233,54 @@ int game()
         gm[30]=gm[32]=gm[35]=gm[37]='#';
         return 1;
     }
-    else if(p1[0]==1&&p1[3]==1&&p1[6]==1)
+    else if(p1[0]==1&&p1[3]==1&&p1[6]==1)       //  1st column
     {
-        for(i=0;i<5;i++){
+        for(i=0; i<5; i++)
+        {
             a[i][4]=d[i][4]=g[i][4]='#';
         }
         gm[24]=gm[25]=gm[40]=gm[45]='#';
         return 1;
     }
-    else if(p1[1]==1&&p1[4]==1&&p1[7]==1)
+    else if(p1[1]==1&&p1[4]==1&&p1[7]==1)       //  2nd column
     {
-        for(i=0;i<5;i++){
+        for(i=0; i<5; i++)
+        {
             b[i][4]=e[i][4]=h[i][4]='#';
         }
         gm[26]=gm[27]=gm[41]=gm[46]='#';
         return 1;
     }
-    else if(p1[2]==1&&p1[4]==1&&p1[6]==1)
+    else if(p1[2]==1&&p1[4]==1&&p1[6]==1)       //  secondary diagonal
     {
         gm[31]=gm[33]=gm[34]=gm[36]='#';
-        for(i=0;i<5;i++){
-            for(j=0;j<9;j++){
-                if(i==0&&j==8||i==1&&j==6||i==2&&j==4||i==3&&j==2||i==4&&j==0){
+        for(i=0; i<5; i++)
+        {
+            for(j=0; j<9; j++)
+            {
+                if(i==0&&j==8||i==1&&j==6||i==2&&j==4||i==3&&j==2||i==4&&j==0)
+                {
                     c[i][j]=e[i][j]=g[i][j]='#';
                 }
             }
         }
         return 1;
     }
-    else if(p1[2]==1&&p1[5]==1&&p1[8]==1)
+    else if(p1[2]==1&&p1[5]==1&&p1[8]==1)       //  3rd column
     {
-        for(i=0;i<5;i++){
+        for(i=0; i<5; i++)
+        {
             c[i][4]=f[i][4]=k[i][4]='#';
         }
         gm[28]=gm[29]=gm[42]=gm[47]='#';
         return 1;
     }
-    else if(p1[3]==1&&p1[4]==1&&p1[5]==1)
+    else if(p1[3]==1&&p1[4]==1&&p1[5]==1)       //  2nd row
     {
-        for(i=8;i<=16;i++){
-            if(i<=15){
+        for(i=8; i<=16; i++)
+        {
+            if(i<=15)
+            {
                 gm[i]='#';
             }
             d[2][i-8]=e[2][i-8]=f[2][i-8]='#';
@@ -230,10 +288,12 @@ int game()
         gm[43]=gm[44]='#';
         return 1;
     }
-    else if(p1[6]==1&&p1[7]==1&&p1[8]==1)
+    else if(p1[6]==1&&p1[7]==1&&p1[8]==1)       //  3rd row
     {
-        for(i=16;i<=24;i++){
-            if(i<=23){
+        for(i=16; i<=24; i++)
+        {
+            if(i<=23)
+            {
                 gm[i]='#';
             }
             g[2][i-16]=h[2][i-16]=k[2][i-16]='#';
@@ -241,10 +301,12 @@ int game()
         gm[48]=gm[49]='#';
         return 1;
     }
-    else if(p2[0]==1&&p2[1]==1&&p2[2]==1)
+    else if(p2[0]==1&&p2[1]==1&&p2[2]==1)       //  1st row
     {
-        for(i=0;i<=8;i++){
-            if(i<8){
+        for(i=0; i<=8; i++)
+        {
+            if(i<8)
+            {
                 gm[i]='#';
             }
             a[2][i]=b[2][i]=c[2][i]='#';
@@ -252,11 +314,14 @@ int game()
         gm[38]=gm[39]='#';
         return 2;
     }
-    else if(p2[0]==1&&p2[4]==1&&p2[8]==1)
+    else if(p2[0]==1&&p2[4]==1&&p2[8]==1)       //  primary diagonal
     {
-        for(i=0;i<5;i++){
-            for(j=0;j<9;j++){
-                if(i*2==j){
+        for(i=0; i<5; i++)
+        {
+            for(j=0; j<9; j++)
+            {
+                if(i*2==j)
+                {
                     a[i][j]=e[i][j]=k[i][j]='#';
                 }
             }
@@ -264,47 +329,55 @@ int game()
         gm[30]=gm[32]=gm[35]=gm[37]='#';
         return 2;
     }
-    else if(p2[0]==1&&p2[3]==1&&p2[6]==1)
+    else if(p2[0]==1&&p2[3]==1&&p2[6]==1)       //  1st column
     {
-        for(i=0;i<5;i++){
+        for(i=0; i<5; i++)
+        {
             a[i][4]=d[i][4]=g[i][4]='#';
         }
         gm[24]=gm[25]=gm[40]=gm[45]='#';
         return 2;
     }
-    else if(p2[1]==1&&p2[4]==1&&p2[7]==1)
+    else if(p2[1]==1&&p2[4]==1&&p2[7]==1)       //  2nd column
     {
         gm[26]=gm[27]='#';
-        for(i=0;i<5;i++){
+        for(i=0; i<5; i++)
+        {
             b[i][4]=e[i][4]=h[i][4]='#';
         }
         gm[26]=gm[27]=gm[41]=gm[46]='#';
         return 2;
     }
-    else if(p2[2]==1&&p2[4]==1&&p2[6]==1)
+    else if(p2[2]==1&&p2[4]==1&&p2[6]==1)       //  secondary diagonal
     {
         gm[31]=gm[33]=gm[34]=gm[36]='#';
-        for(i=0;i<5;i++){
-            for(j=0;j<9;j++){
-                if(i==0&&j==8||i==1&&j==6||i==2&&j==4||i==3&&j==2||i==4&&j==0){
+        for(i=0; i<5; i++)
+        {
+            for(j=0; j<9; j++)
+            {
+                if(i==0&&j==8||i==1&&j==6||i==2&&j==4||i==3&&j==2||i==4&&j==0)
+                {
                     c[i][j]=e[i][j]=g[i][j]='#';
                 }
             }
         }
         return 2;
     }
-    else if(p2[2]==1&&p2[5]==1&&p2[8]==1)
+    else if(p2[2]==1&&p2[5]==1&&p2[8]==1)       //  3rd column
     {
-        for(i=0;i<5;i++){
+        for(i=0; i<5; i++)
+        {
             c[i][4]=f[i][4]=k[i][4]='#';
         }
         gm[28]=gm[29]=gm[42]=gm[47]='#';
         return 2;
     }
-    else if(p2[3]==1&&p2[4]==1&&p2[5]==1)
+    else if(p2[3]==1&&p2[4]==1&&p2[5]==1)       //  2nd row
     {
-        for(i=8;i<=16;i++){
-            if(i<=15){
+        for(i=8; i<=16; i++)
+        {
+            if(i<=15)
+            {
                 gm[i]='#';
             }
             d[2][i-8]=e[2][i-8]=f[2][i-8]='#';
@@ -312,30 +385,40 @@ int game()
         gm[43]=gm[44]='#';
         return 2;
     }
-    else if(p2[6]==1&&p2[7]==1&&p2[8]==1)
+    else if(p2[6]==1&&p2[7]==1&&p2[8]==1)       //  3rd row
     {
-        for(i=16;i<=24;i++){
-            if(i<=23){
+        for(i=16; i<=24; i++)
+        {
+            if(i<=23)
+            {
                 gm[i]='#';
             }
             g[2][i-16]=h[2][i-16]=k[2][i-16]='#';
         }
-         gm[48]=gm[49]='#';
+        gm[48]=gm[49]='#';
         return 2;
     }
     else
-        return 3;
+        return;
 }
+
+/*
+
+    main function.
+
+*/
+
 int main()
 {
     fflush(stdin);
     x=1;
     int i,j,n;
-    for(i=0;i<50;i++){
+    for(i=0; i<50; i++)     //  storing space(ascii value : 32) in gm array.
+    {
         gm[i]=32;
     }
     gm[30]=gm[31]=gm[34]=gm[35]=gm[40]=gm[41]=gm[42]=gm[45]=gm[46]=gm[47]='-';
-    gm[38]=gm[39]=gm[43]=gm[44]=gm[48]=gm[49]='|';
+    gm[38]=gm[39]=gm[43]=gm[44]=gm[48]=gm[49]='|';      //  storing '-' and '|' character in particular index to print main pattern perfectly.
     for(i=0; i<5; i++)
     {
         for(j=0; j<9; j++)
@@ -346,7 +429,7 @@ int main()
                 b[i][j]='2';
                 c[i][j]='3';
                 d[i][j]='4';
-                e[i][j]='5';
+                e[i][j]='5';            //storing partition number
                 f[i][j]='6';
                 g[i][j]='7';
                 h[i][j]='8';
@@ -354,27 +437,27 @@ int main()
             }
             else
             {
-                a[i][j]=b[i][j]=c[i][j]=d[i][j]=e[i][j]=f[i][j]=g[i][j]=h[i][j]=k[i][j]=32;
+                a[i][j]=b[i][j]=c[i][j]=d[i][j]=e[i][j]=f[i][j]=g[i][j]=h[i][j]=k[i][j]=32;     //  storing space(ascii value : 32) in all partition array.
 
             }
-            check[j]=p1[j]=p2[j]=0;
+            check[j]=p1[j]=p2[j]=0;     //  firstly both players have zero move.
         }
     }
-    while(1)
+    while(1)        //  while loop until game end.
     {
         for(i=0; i<9; i++)
         {
-            if(check[i]==0)
+            if(check[i]==0)     //  if any partition is empty it will break this loop and i not equal to 9.
                 break;
         }
-        if(i==9)
+        if(i==9)                //  if all partition are done before win it will draw.
         {
             print();
             printf("\t\t\tGame Draw.\n");
             printf("\n\t\tEnter 1 to try again.");
             fflush(stdin);
             scanf("%d",&choi);
-            if(choi==1)
+            if(choi==1)         //  try again.
             {
                 main();
             }
@@ -387,7 +470,7 @@ int main()
             }
         }
         print();
-        if(x==1)
+        if(x==1)        //  to print whose move now.
         {
             printf("\n\n\t1st Player : ");
         }
@@ -401,18 +484,18 @@ int main()
             ch(n);
         }
         else
-        {
+        {                   //  if inputed value not in between 1 to 9.
             fflush(stdin);
             printf("\t\t\tEnter Correctly!!\n");
             sleep(1);
         }
         if(game()==1)
-        {
+        {                   //  if game function return 1, 1st player win.
             print();
             printf("\t\t\t1st Player Win.\n");
             fflush(stdin);
             printf("\n\t\tEnter 1 to try again.");
-            scanf("%d",&choi);
+            scanf("%d",&choi);      //try again.
             if(choi==1)
             {
                 main();
@@ -425,13 +508,13 @@ int main()
                 return 0;
             }
         }
-        else if(game()==2)
+        else if(game()==2)      //  if game function return 2, 2nd player win.
         {
             print();
             printf("\t\t\t2nd Player Win.\n");
             fflush(stdin);
             printf("\n\t\tEnter 1 to try again.");
-            scanf("%d",&choi);
+            scanf("%d",&choi);      //try again.
             if(choi==1)
             {
                 main();
