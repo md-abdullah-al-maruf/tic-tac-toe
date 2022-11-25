@@ -9,4 +9,4 @@ OR
 tic-tac-toe.c file in C compiler.
 
 <h1>DEMO---------</h1>
-![tic-tac-toe](https://user-images.githubusercontent.com/82973846/203997543-6b193012-c11f-44ed-9223-49f719a1f5b2.gif)
+![tictactoe](https://user-images.githubusercontent.com/82973846/203997992-979780f4-a43e-49c0-a012-58263342401b.gif)
