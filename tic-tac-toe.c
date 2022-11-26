@@ -12,7 +12,7 @@
 //  globally initialization of all needed arrays and variables.
 
 char a[5][9],b[5][9],c[5][9],d[5][9],e[5][9],f[5][9],g[5][9],h[5][9],k[5][9],p1[9],p2[9],gm[50];
-int check[9],x=1,y=0,z=0,choi=1;
+int check[9],x=1,y=0,z=0,choi=1,tr=0;
 
 /*
 
@@ -26,9 +26,11 @@ void * cross(char t[5][9])
     for(i=0; i<5; i++)
     {
         for(j=0; j<9; j++)          //  *       *
-        {                           //    *   *
+        {
+            //    *   *
             if(i*2==j)              //      *
-            {                       //    *   *
+            {
+                //    *   *
                 t[i][j]='*';        //  *       *
             }
             if(i==0&&j==8||i==1&&j==6||i==2&&j==4||i==3&&j==2||i==4&&j==0)
@@ -46,10 +48,12 @@ void * cross(char t[5][9])
 */
 
 void * zero(char t[5][9])
-{                                   //  * * * * *
+{
+    //  * * * * *
     int i,j;                        //  *       *
     for(i=0; i<5; i++)              //  *       *
-    {                               //  *       *
+    {
+        //  *       *
         for(j=0; j<9; j++)          //  * * * * *
         {
             if(((i==0||i==4)&&j%2==0)||(((i>0&&i<4)&&(j==0||j==8))))
@@ -153,7 +157,8 @@ void ch(int n)
         }
     }
     else
-    {                   //  if the partition is already given by previous player.
+    {
+        //  if the partition is already given by previous player.
         fflush(stdin);
         printf("\t\t\tIts given already!!\n");
         sleep(1);
@@ -404,12 +409,35 @@ int game()
 
 /*
 
+    try again function.
+
+*/
+
+int tryagain()
+{
+    printf("\n\t\tEnter 1 to try again. ");
+    scanf("%d",&tr);
+    if(tr==1)               // if user input 1, Game will start again.
+    {
+        return 1;
+    }
+    else
+    {
+        print();
+        printf("\n\t\t\tThank You\n");
+        return 0;
+    }
+}
+
+/*
+
     main function.
 
 */
 
 int main()
 {
+main:
     fflush(stdin);
     x=1;
     int i,j,n;
@@ -454,18 +482,13 @@ int main()
         {
             print();
             printf("\t\t\tGame Draw.\n");
-            printf("\n\t\tEnter 1 to try again.");
-            fflush(stdin);
-            scanf("%d",&choi);
-            if(choi==1)         //  try again.
+            tr=0;
+            if(tryagain()==1)
             {
-                main();
+                goto main;          //  try again
             }
             else
             {
-                print();
-                printf("\t\t\tThank You\n");
-                break;
                 return 0;
             }
         }
@@ -484,27 +507,25 @@ int main()
             ch(n);
         }
         else
-        {                   //  if inputed value not in between 1 to 9.
+        {
+            //  if inputed value not in between 1 to 9.
             fflush(stdin);
             printf("\t\t\tEnter Correctly!!\n");
             sleep(1);
         }
         if(game()==1)
-        {                   //  if game function return 1, 1st player win.
+        {
+            //  if game function return 1, 1st player win.
             print();
             printf("\t\t\t1st Player Win.\n");
             fflush(stdin);
-            printf("\n\t\tEnter 1 to try again.");
-            scanf("%d",&choi);      //try again.
-            if(choi==1)
+            tr=0;
+            if(tryagain()==1)
             {
-                main();
+                goto main;      //  try again
             }
             else
             {
-                print();
-                printf("\t\t\tThank You\n");
-                break;
                 return 0;
             }
         }
@@ -513,17 +534,13 @@ int main()
             print();
             printf("\t\t\t2nd Player Win.\n");
             fflush(stdin);
-            printf("\n\t\tEnter 1 to try again.");
-            scanf("%d",&choi);      //try again.
-            if(choi==1)
+            tr=0;
+            if(tryagain()==1)
             {
-                main();
+                goto main;      //  try again
             }
             else
             {
-                print();
-                printf("\t\t\tThank You\n");
-                break;
                 return 0;
             }
         }
