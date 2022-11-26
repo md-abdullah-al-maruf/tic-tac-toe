@@ -13,3 +13,5 @@ tic-tac-toe.c file in C compiler.
 
 ![tictactoe](https://user-images.githubusercontent.com/82973846/204030679-2b90f4a3-3985-4ad4-948d-58c4bf5c510c.gif)
 
+<br><br>
+![visitor badge](https://visitor-badge.glitch.me/badge?page_id=md-abdullah-al-maruf.tic-tac-toe&left_color=red&right_color=green) 
