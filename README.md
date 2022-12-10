@@ -12,7 +12,7 @@ tic-tac-toe.c file in C compiler.
 
 [Two Players](https://github.com/md-abdullah-al-maruf/tic-tac-toe/blob/main/tic-tac-toe.c)
 <br>
-[With Computer](https://github.com/md-abdullah-al-maruf/tic-tac-toe/blob/main/tic-tac-toe%20(easy%20mode%20with%20computer).c)
+[With Computer](https://github.com/md-abdullah-al-maruf/tic-tac-toe/blob/main/tic-tac-toe%20(with%20computer).c)
 <br>
 <h1>DEMO---------</h1>
 
