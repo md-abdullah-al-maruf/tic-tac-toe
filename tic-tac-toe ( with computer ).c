@@ -609,9 +609,9 @@ int cmpmove()                                   //  For hard moves of computer.
     {
         return 3;
     }
-    else if(p2[2]==1&&p2[5]==0&&p2[8]==1&&check[4]==0)      //  3rd column
+    else if(p2[2]==1&&p2[5]==0&&p2[8]==1&&check[5]==0)      //  3rd column
     {
-        return 5;
+        return 6;
     }
     else if(p2[2]==1&&p2[5]==1&&p2[8]==0&&check[8]==0)      //  3rd column
     {
@@ -705,9 +705,9 @@ int cmpmove()                                   //  For hard moves of computer.
     {
         return 3;
     }
-    else if(p1[2]==1&&p1[5]==0&&p1[8]==1&&check[4]==0)       //  3rd column
+    else if(p1[2]==1&&p1[5]==0&&p1[8]==1&&check[5]==0)       //  3rd column
     {
-        return 5;
+        return 6;
     }
     else if(p1[2]==1&&p1[5]==1&&p1[8]==0&&check[8]==0)       //  3rd column
     {
@@ -740,6 +740,18 @@ int cmpmove()                                   //  For hard moves of computer.
     else{                                                    //  Random move.
         if(check[4]==0){
             return 5;
+        }
+        else if(check[8]==0){
+            return 9;
+        }
+        else if(check[0]==0){
+            return 1;
+        }
+        else if(check[6]==0){
+            return 7;
+        }
+        else if(check[2]==0){
+            return 3;
         }
         int n=rand()%9+1;
         while(check[n-1]!=0){
@@ -837,7 +849,6 @@ enter:
             else{
                 n=cmpmove();
             }
-            sleep(1);
             printf("%d",n);
             sleep(1);
         }
