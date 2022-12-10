@@ -2,13 +2,6 @@
 
 Tic-tac-toe game in C language.
 
-You can run the tic-tac-toe.exe file in windows
-
-OR
-
-tic-tac-toe.c file in C compiler.
-
-
 
 [Two Players](https://github.com/md-abdullah-al-maruf/tic-tac-toe/blob/main/tic-tac-toe.c)
 <br>
