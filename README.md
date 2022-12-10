@@ -3,9 +3,9 @@
 Tic-tac-toe game in C language.
 
 
-[Two Players](https://github.com/md-abdullah-al-maruf/tic-tac-toe/blob/main/tic-tac-toe.c)
+[Two Players](https://github.com/md-abdullah-al-maruf/tic-tac-toe/blob/main/tic-tac-toe%20(%202%20Players%20).c)
 <br>
-[With Computer](https://github.com/md-abdullah-al-maruf/tic-tac-toe/blob/main/tic-tac-toe%20(with%20computer).c)
+[With Computer](https://github.com/md-abdullah-al-maruf/tic-tac-toe/blob/main/tic-tac-toe%20(%20with%20computer%20).c)
 <br>
 <h1>DEMO---------</h1>
 
